@@ -28910,62 +28910,7 @@ if ("development" === 'production') {
     }
   };
 }
-},{"react-dom":"../node_modules/react-dom/index.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-  return bundleURL;
-}
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-  return '/';
-}
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)?\/[^/]+(?:\?.*)?$/, '$1') + '/';
-}
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-function updateLink(link) {
-  var newLink = link.cloneNode();
-  newLink.onload = function () {
-    link.remove();
-  };
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-var cssTimeout = null;
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-    cssTimeout = null;
-  }, 50);
-}
-module.exports = reloadCSS;
-},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"index.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/@remix-run/router/dist/router.js":[function(require,module,exports) {
+},{"react-dom":"../node_modules/react-dom/index.js"}],"../node_modules/@remix-run/router/dist/router.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38416,7 +38361,7 @@ function useViewTransitionState(to, opts) {
   return (0, _router.matchPath)(path.pathname, nextPath) != null || (0, _router.matchPath)(path.pathname, currentPath) != null;
 }
 //#endregion
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","react-router":"../node_modules/react-router/dist/index.js","@remix-run/router":"../node_modules/@remix-run/router/dist/router.js"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","react-router":"../node_modules/react-router/dist/index.js","@remix-run/router":"../node_modules/@remix-run/router/dist/router.js"}],"pages/HomePage.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38426,33 +38371,87 @@ exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
 var _reactRouterDom = require("react-router-dom");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-// import HomePage from "./pages/HomePage";
-// import Dashboard from "./pages/Dashboard";
+var HomePage = function HomePage() {
+  var navigate = (0, _reactRouterDom.useNavigate)();
+  var handleRoleSelect = function handleRoleSelect(role) {
+    navigate("/dashboard/".concat(role));
+  };
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "role-selection"
+  }, /*#__PURE__*/_react.default.createElement("h1", null, "Wyb\xF3r Roli"), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+    onClick: function onClick() {
+      return handleRoleSelect("technik");
+    }
+  }, "Technik"), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: function onClick() {
+      return handleRoleSelect("koordynator");
+    }
+  }, "Koordynator"), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: function onClick() {
+      return handleRoleSelect("kierownik");
+    }
+  }, "Kierownik")));
+};
+var _default = exports.default = HomePage;
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/dist/index.js"}],"pages/Dashboard.js":[function(require,module,exports) {
+"use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _react = _interopRequireDefault(require("react"));
+var _reactRouterDom = require("react-router-dom");
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+var Dashboard = function Dashboard() {
+  var _useParams = (0, _reactRouterDom.useParams)(),
+    role = _useParams.role;
+  var navigate = (0, _reactRouterDom.useNavigate)();
+  var handleLogout = function handleLogout() {
+    navigate("/");
+  };
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "dashboard"
+  }, /*#__PURE__*/_react.default.createElement("h1", null, "Dashboard"), /*#__PURE__*/_react.default.createElement("p", null, "Rola: ", role), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: handleLogout
+  }, "Wyloguj"));
+};
+var _default = exports.default = Dashboard;
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/dist/index.js"}],"App.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _react = _interopRequireDefault(require("react"));
+var _reactRouterDom = require("react-router-dom");
+var _HomePage = _interopRequireDefault(require("./pages/HomePage"));
+var _Dashboard = _interopRequireDefault(require("./pages/Dashboard"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 var App = function App() {
-  return /*#__PURE__*/_react.default.createElement("div", null, "App")
-  // <Router>
-  //   <div className="container fade-in">
-  //     <Routes>
-  //       <Route path="/" element={<HomePage />} />
-  //       <Route path="/dashboard/:role" element={<Dashboard />} />
-  //     </Routes>
-  //   </div>
-  // </Router>
-  ;
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "container fade-in"
+  }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Routes, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    path: "/",
+    element: /*#__PURE__*/_react.default.createElement(_HomePage.default, null)
+  }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    path: "/dashboard/:role",
+    element: /*#__PURE__*/_react.default.createElement(_Dashboard.default, null)
+  })));
 };
 var _default = exports.default = App;
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/dist/index.js"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/dist/index.js","./pages/HomePage":"pages/HomePage.js","./pages/Dashboard":"pages/Dashboard.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
 var _client = _interopRequireDefault(require("react-dom/client"));
-require("./index.css");
+var _reactRouterDom = require("react-router-dom");
 var _App = _interopRequireDefault(require("./App"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 var root = _client.default.createRoot(document.getElementById("root"));
-root.render( /*#__PURE__*/_react.default.createElement(_react.default.StrictMode, null, /*#__PURE__*/_react.default.createElement(_App.default, null)));
-},{"react":"../node_modules/react/index.js","react-dom/client":"../node_modules/react-dom/client.js","./index.css":"index.css","./App":"App.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+root.render( /*#__PURE__*/_react.default.createElement(_react.default.StrictMode, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_App.default, null))));
+},{"react":"../node_modules/react/index.js","react-dom/client":"../node_modules/react-dom/client.js","react-router-dom":"../node_modules/react-router-dom/dist/index.js","./App":"App.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -38477,7 +38476,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50584" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51195" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
