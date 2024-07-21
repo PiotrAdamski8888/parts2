@@ -38615,20 +38615,50 @@ var Dashboard = function Dashboard() {
     className: "dashboard"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "dashboard-header"
-  }, /*#__PURE__*/_react.default.createElement("h1", null, "Dashboard"), /*#__PURE__*/_react.default.createElement("div", {
-    className: "header-right"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "role-display"
   }, "Rola: ", role), /*#__PURE__*/_react.default.createElement("button", {
+    className: "logout-button",
     onClick: handleLogout
-  }, "Wyloguj"))), /*#__PURE__*/_react.default.createElement("div", {
+  }, "Wyloguj")), /*#__PURE__*/_react.default.createElement("div", {
     className: "content"
   }, (role === "technik" || role === "koordynator") && /*#__PURE__*/_react.default.createElement(_DeviceList.default, {
     role: role
-  }), role === "kierownik" && /*#__PURE__*/_react.default.createElement(_OrderList.default, null)));
+  }), role === "kierownik" && /*#__PURE__*/_react.default.createElement(_OrderList.default, null)))
+  // <div className="dashboard">
+  //   <div className="dashboard-header">
+  //     {/* <h1>Dashboard</h1> */}
+  //     <div className="header-right">
+  //       <span className="role-display">Rola: {role}</span>
+  //       <button onClick={handleLogout}>Wyloguj</button>
+  //     </div>
+  //   </div>
+  //   <div className="content">
+  //     {(role === "technik" || role === "koordynator") && (
+  //       <DeviceList role={role} />
+  //     )}
+  //     {role === "kierownik" && <OrderList />}
+  //   </div>
+  // </div>
+  ;
 };
 var _default = exports.default = Dashboard;
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/dist/index.js","../components/DeviceList":"components/DeviceList.js","../components/OrderList":"components/OrderList.js"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/dist/index.js","../components/DeviceList":"components/DeviceList.js","../components/OrderList":"components/OrderList.js"}],"components/Footer.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _react = _interopRequireDefault(require("react"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+var Footer = function Footer() {
+  return /*#__PURE__*/_react.default.createElement("footer", {
+    className: "app-footer"
+  }, /*#__PURE__*/_react.default.createElement("p", null, "\xA9 2024 Piotr Adamski. All rights reserved."));
+};
+var _default = exports.default = Footer;
+},{"react":"../node_modules/react/index.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38639,6 +38669,7 @@ var _react = _interopRequireDefault(require("react"));
 var _reactRouterDom = require("react-router-dom");
 var _HomePage = _interopRequireDefault(require("./pages/HomePage"));
 var _Dashboard = _interopRequireDefault(require("./pages/Dashboard"));
+var _Footer = _interopRequireDefault(require("./components/Footer"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 var App = function App() {
   return /*#__PURE__*/_react.default.createElement("div", {
@@ -38649,10 +38680,10 @@ var App = function App() {
   }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/dashboard/:role",
     element: /*#__PURE__*/_react.default.createElement(_Dashboard.default, null)
-  })));
+  })), /*#__PURE__*/_react.default.createElement(_Footer.default, null));
 };
 var _default = exports.default = App;
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/dist/index.js","./pages/HomePage":"pages/HomePage.js","./pages/Dashboard":"pages/Dashboard.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/dist/index.js","./pages/HomePage":"pages/HomePage.js","./pages/Dashboard":"pages/Dashboard.js","./components/Footer":"components/Footer.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
@@ -38743,7 +38774,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52891" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55661" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

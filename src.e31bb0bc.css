@@ -18,6 +18,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  padding-bottom: 60px;
 }
 
 h1,
@@ -179,28 +180,19 @@ button:hover {
   background-color: #0056b3;
 }
 
-.dashboard-header {
-  background-color: #1976d2;
-  color: white;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .header-right {
   display: flex;
   align-items: center;
 }
 
 .role-display {
-  margin-right: 20px;
+  margin-right: auto;
   font-weight: bold;
 }
 
 button {
   background-color: #ffffff;
-  color: #1976d2;
+  color: var(--primary-color);
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
@@ -222,6 +214,35 @@ button:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
   cursor: pointer;
+}
+
+.app-footer {
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 1200px; /* To samo co .container */
+  margin: 0 auto; /* Wycentruj footer */
+}
+
+.logout-button {
+  background-color: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: white;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
 
