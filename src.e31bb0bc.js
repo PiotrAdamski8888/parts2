@@ -38393,7 +38393,186 @@ var HomePage = function HomePage() {
   }, "Kierownik")));
 };
 var _default = exports.default = HomePage;
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/dist/index.js"}],"pages/Dashboard.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/dist/index.js"}],"components/OrderForm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _react = _interopRequireWildcard(require("react"));
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+var OrderForm = function OrderForm(_ref) {
+  var deviceId = _ref.deviceId,
+    onSubmit = _ref.onSubmit;
+  var _useState = (0, _react.useState)(""),
+    _useState2 = _slicedToArray(_useState, 2),
+    partCode = _useState2[0],
+    setPartCode = _useState2[1];
+  var _useState3 = (0, _react.useState)(""),
+    _useState4 = _slicedToArray(_useState3, 2),
+    partName = _useState4[0],
+    setPartName = _useState4[1];
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    console.log("Zam\xF3wiono cz\u0119\u015B\u0107 dla urz\u0105dzenia ".concat(deviceId, ":"), {
+      partCode: partCode,
+      partName: partName
+    });
+    // Dodaj logikę wysyłania zamówienia
+    setPartCode("");
+    setPartName("");
+    onSubmit(); // Funkcja przekazana z props po złożeniu zamówienia
+  };
+  return /*#__PURE__*/_react.default.createElement("form", {
+    onSubmit: handleSubmit,
+    className: "order-form"
+  }, /*#__PURE__*/_react.default.createElement("h4", null, "Zam\xF3w cz\u0119\u015B\u0107 dla urz\u0105dzenia ", deviceId), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    value: partCode,
+    onChange: function onChange(e) {
+      return setPartCode(e.target.value);
+    },
+    placeholder: "Kod cz\u0119\u015Bci"
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    value: partName,
+    onChange: function onChange(e) {
+      return setPartName(e.target.value);
+    },
+    placeholder: "Nazwa cz\u0119\u015Bci"
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    type: "submit"
+  }, "Zam\xF3w Cz\u0119\u015B\u0107"));
+};
+var _default = exports.default = OrderForm;
+},{"react":"../node_modules/react/index.js"}],"components/DeviceDetails.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _react = _interopRequireDefault(require("react"));
+var _OrderForm = _interopRequireDefault(require("./OrderForm"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+var DeviceDetails = function DeviceDetails(_ref) {
+  var device = _ref.device,
+    onClose = _ref.onClose,
+    role = _ref.role;
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "device-details-overlay",
+    onClick: onClose
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "device-details",
+    onClick: function onClick(e) {
+      return e.stopPropagation();
+    }
+  }, /*#__PURE__*/_react.default.createElement("h3", null, device.name), /*#__PURE__*/_react.default.createElement("button", {
+    className: "close-button",
+    onClick: onClose
+  }, "X"), role === "technik" ? /*#__PURE__*/_react.default.createElement(_OrderForm.default, {
+    deviceId: device.id,
+    onSubmit: onClose
+  }) : /*#__PURE__*/_react.default.createElement("p", null, "Szczeg\xF3\u0142y urz\u0105dzenia: stan czesci")));
+};
+var _default = exports.default = DeviceDetails;
+},{"react":"../node_modules/react/index.js","./OrderForm":"components/OrderForm.js"}],"components/DeviceList.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _react = _interopRequireWildcard(require("react"));
+var _DeviceDetails = _interopRequireDefault(require("./DeviceDetails"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+var DeviceList = function DeviceList(_ref) {
+  var role = _ref.role;
+  var _useState = (0, _react.useState)(null),
+    _useState2 = _slicedToArray(_useState, 2),
+    selectedDevice = _useState2[0],
+    setSelectedDevice = _useState2[1];
+  var devices = [{
+    id: 1,
+    name: "Urządzenie 1"
+  }, {
+    id: 2,
+    name: "Urządzenie 2"
+  }];
+  var handleDeviceClick = function handleDeviceClick(device) {
+    setSelectedDevice(device);
+  };
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "device-list"
+  }, /*#__PURE__*/_react.default.createElement("h2", null, "Lista Urz\u0105dze\u0144"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "device-grid"
+  }, devices.map(function (device) {
+    return /*#__PURE__*/_react.default.createElement("div", {
+      key: device.id,
+      className: "device-item",
+      onClick: function onClick() {
+        return handleDeviceClick(device);
+      }
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "device-name"
+    }, device.name));
+  })), selectedDevice && /*#__PURE__*/_react.default.createElement(_DeviceDetails.default, {
+    device: selectedDevice,
+    onClose: function onClose() {
+      return setSelectedDevice(null);
+    },
+    role: role
+  }));
+};
+var _default = exports.default = DeviceList;
+},{"react":"../node_modules/react/index.js","./DeviceDetails":"components/DeviceDetails.js"}],"components/OrderList.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _react = _interopRequireDefault(require("react"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+var OrderList = function OrderList() {
+  var orders = [{
+    id: 1,
+    partCode: "123",
+    partName: "Część 1"
+  }, {
+    id: 2,
+    partCode: "456",
+    partName: "Część 2"
+  }];
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "order-list"
+  }, /*#__PURE__*/_react.default.createElement("h2", null, "Lista Zam\xF3wie\u0144"), /*#__PURE__*/_react.default.createElement("ul", {
+    className: "list"
+  }, orders.map(function (order) {
+    return /*#__PURE__*/_react.default.createElement("li", {
+      key: order.id,
+      className: "list-item order-item-transform"
+    }, "Urz\u0105dzenie \"...\" ", order.partCode, " - ", order.partName);
+  })));
+};
+var _default = exports.default = OrderList;
+},{"react":"../node_modules/react/index.js"}],"pages/Dashboard.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38402,6 +38581,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
 var _reactRouterDom = require("react-router-dom");
+var _DeviceList = _interopRequireDefault(require("../components/DeviceList"));
+var _OrderList = _interopRequireDefault(require("../components/OrderList"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 var Dashboard = function Dashboard() {
   var _useParams = (0, _reactRouterDom.useParams)(),
@@ -38412,12 +38593,22 @@ var Dashboard = function Dashboard() {
   };
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "dashboard"
-  }, /*#__PURE__*/_react.default.createElement("h1", null, "Dashboard"), /*#__PURE__*/_react.default.createElement("p", null, "Rola: ", role), /*#__PURE__*/_react.default.createElement("button", {
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "dashboard-header"
+  }, /*#__PURE__*/_react.default.createElement("h1", null, "Dashboard"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "header-right"
+  }, /*#__PURE__*/_react.default.createElement("span", {
+    className: "role-display"
+  }, "Rola: ", role), /*#__PURE__*/_react.default.createElement("button", {
     onClick: handleLogout
-  }, "Wyloguj"));
+  }, "Wyloguj"))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "content"
+  }, (role === "technik" || role === "koordynator") && /*#__PURE__*/_react.default.createElement(_DeviceList.default, {
+    role: role
+  }), role === "kierownik" && /*#__PURE__*/_react.default.createElement(_OrderList.default, null)));
 };
 var _default = exports.default = Dashboard;
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/dist/index.js"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/dist/index.js","../components/DeviceList":"components/DeviceList.js","../components/OrderList":"components/OrderList.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38441,17 +38632,73 @@ var App = function App() {
   })));
 };
 var _default = exports.default = App;
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/dist/index.js","./pages/HomePage":"pages/HomePage.js","./pages/Dashboard":"pages/Dashboard.js"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/dist/index.js","./pages/HomePage":"pages/HomePage.js","./pages/Dashboard":"pages/Dashboard.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+  return bundleURL;
+}
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+  return '/';
+}
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)?\/[^/]+(?:\?.*)?$/, '$1') + '/';
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+function updateLink(link) {
+  var newLink = link.cloneNode();
+  newLink.onload = function () {
+    link.remove();
+  };
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+var cssTimeout = null;
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+    cssTimeout = null;
+  }, 50);
+}
+module.exports = reloadCSS;
+},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"index.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
 var _client = _interopRequireDefault(require("react-dom/client"));
 var _reactRouterDom = require("react-router-dom");
 var _App = _interopRequireDefault(require("./App"));
+require("./index.css");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 var root = _client.default.createRoot(document.getElementById("root"));
 root.render( /*#__PURE__*/_react.default.createElement(_react.default.StrictMode, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.HashRouter, null, /*#__PURE__*/_react.default.createElement(_App.default, null))));
-},{"react":"../node_modules/react/index.js","react-dom/client":"../node_modules/react-dom/client.js","react-router-dom":"../node_modules/react-router-dom/dist/index.js","./App":"App.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom/client":"../node_modules/react-dom/client.js","react-router-dom":"../node_modules/react-router-dom/dist/index.js","./App":"App.js","./index.css":"index.css"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -38476,7 +38723,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51814" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52324" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
