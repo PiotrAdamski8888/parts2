@@ -38514,6 +38514,18 @@ var DeviceList = function DeviceList(_ref) {
   }, {
     id: 2,
     name: "Urządzenie 2"
+  }, {
+    id: 3,
+    name: "Urządzenie 3"
+  }, {
+    id: 4,
+    name: "Urządzenie 4"
+  }, {
+    id: 5,
+    name: "Urządzenie 5"
+  }, {
+    id: 6,
+    name: "Urządzenie 6"
   }];
   var handleDeviceClick = function handleDeviceClick(device) {
     setSelectedDevice(device);
@@ -38731,7 +38743,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52654" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52788" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
