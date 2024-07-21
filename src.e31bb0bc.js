@@ -38553,12 +38553,20 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e
 var OrderList = function OrderList() {
   var orders = [{
     id: 1,
-    partCode: "123",
-    partName: "Część 1"
+    partCode: "SN.częsci",
+    partName: "Nazwa części "
   }, {
     id: 2,
-    partCode: "456",
-    partName: "Część 2"
+    partCode: "SN.częsci",
+    partName: "Nazwa części "
+  }, {
+    id: 3,
+    partCode: "SN.częsci",
+    partName: "Nazwa części "
+  }, {
+    id: 4,
+    partCode: "SN.częsci",
+    partName: "Nazwa części "
   }];
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "order-list"
@@ -38568,7 +38576,7 @@ var OrderList = function OrderList() {
     return /*#__PURE__*/_react.default.createElement("li", {
       key: order.id,
       className: "list-item order-item-transform"
-    }, "Urz\u0105dzenie \"...\" ", order.partCode, " - ", order.partName);
+    }, "Nazwa Urz\u0105dzenia | ", order.partCode, " | ", order.partName);
   })));
 };
 var _default = exports.default = OrderList;
@@ -38723,7 +38731,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52324" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52654" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
