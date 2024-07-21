@@ -6,12 +6,40 @@
   --hover-color: #2980b9;
 }
 
-body {
+/* body {
   font-family: Arial, sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
   margin: 0;
   padding: 0;
+} */
+
+/* body {
+  font-family: Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  background-image: url("https://images.pexels.com/photos/7130548/pexels-photo-7130548.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+} */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(
+    to right,
+    rgba(52, 152, 219, 0.3) 0%,
+    /* Niebieski z przezroczystością na lewym boku */ rgba(236, 240, 241, 1) 50%,
+    /* Jasny środek */ rgba(52, 152, 219, 0.3) 100%
+      /* Niebieski z przezroczystością na prawym boku */
+  );
+  background-attachment: fixed;
+  color: var(--text-color);
 }
 
 .container {
